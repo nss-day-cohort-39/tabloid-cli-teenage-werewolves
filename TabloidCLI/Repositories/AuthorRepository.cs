@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using TabloidCLI.Models;
 using TabloidCLI.Repositories;
-
+                                   
 namespace TabloidCLI
 {
     public class AuthorRepository : DatabaseConnector, IRepository<Author>
     {
         public AuthorRepository(string connectionString) : base(connectionString) { }
+
+        //Method to list all authors
+        //Creates a list of authors from the database and displays them
+        //Called when user chooses List Authors from AuthorManager menu
 
         public List<Author> GetAll()
         {
@@ -44,6 +48,9 @@ namespace TabloidCLI
                 }
             }
         }
+
+        //Method to get author by id
+        //Called when user chooses Author details from AuthorManager menu
 
         public Author Get(int id)
         {
