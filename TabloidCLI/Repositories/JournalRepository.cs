@@ -10,7 +10,7 @@ namespace TabloidCLI
     {
         public JournalRepository(string connectionString) : base(connectionString) { }
 
-        public List<Journal> GetAll()
+        public List<Journal> GetAll()  
         {
             using (SqlConnection conn = Connection)
             {
