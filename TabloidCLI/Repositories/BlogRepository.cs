@@ -9,6 +9,8 @@ namespace TabloidCLI
     public class BlogRepository : DatabaseConnector, IRepository<Blog>
     {
         public BlogRepository(string connectionString) : base(connectionString) { }
+       
+
 
         //Method to list all authors
         //Creates a list of authors from the database and displays them
@@ -146,6 +148,15 @@ namespace TabloidCLI
 
         public void Delete(int id)
         {
+            Blog blog = Get(id);
+
+            List<Tag> tags = blog.Tags;
+
+            foreach (Tag tag in tags)
+            {
+                DeleteTag(blog.Id, tag.Id);
+            }
+
             using (SqlConnection conn = Connection)
             {
                 conn.Open();
