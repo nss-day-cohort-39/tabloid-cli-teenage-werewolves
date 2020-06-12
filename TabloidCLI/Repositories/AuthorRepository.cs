@@ -155,8 +155,8 @@ namespace TabloidCLI
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"UPDATE Author
-                                           SET IsActive = 0
-                                        WHERE id = @id";
+                                            SET IsActive = 0   
+                                         WHERE id = @id";
                     cmd.Parameters.AddWithValue("@id", id);
 
                     cmd.ExecuteNonQuery();
