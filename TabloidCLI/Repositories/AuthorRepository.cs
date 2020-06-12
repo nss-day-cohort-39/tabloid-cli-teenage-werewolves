@@ -24,8 +24,9 @@ namespace TabloidCLI
                     cmd.CommandText = @"SELECT id,
                                                FirstName,
                                                LastName,
-                                               Bio
-                                          FROM Author";
+                                               Bio,
+                                               IsActive
+                                          FROM Author WHERE IsActive = 1";
 
                     List<Author> authors = new List<Author>();
 
@@ -153,7 +154,9 @@ namespace TabloidCLI
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"DELETE FROM Author WHERE id = @id";
+                    cmd.CommandText = @"UPDATE Author
+                                        SET IsActive = 0   
+                                        WHERE id = @id";
                     cmd.Parameters.AddWithValue("@id", id);
 
                     cmd.ExecuteNonQuery();
